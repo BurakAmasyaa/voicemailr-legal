@@ -21,60 +21,29 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.7;
   }
-  .wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 64px 24px 96px;
-  }
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-    margin: 0 0 8px;
-    letter-spacing: -0.02em;
-  }
-  .updated {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin: 0 0 40px;
-  }
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 40px 0 12px;
-  }
-  h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 24px 0 8px;
-  }
-  p, li {
-    color: var(--text-secondary);
-    font-size: 15px;
-  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 64px 24px 96px; }
+  h1 { font-size: 30px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .updated { color: var(--text-secondary); font-size: 14px; margin: 0 0 40px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 40px 0 12px; }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
+  p, li { color: var(--text-secondary); font-size: 15px; }
   ul { padding-left: 20px; }
   li { margin-bottom: 6px; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .lang-switch {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 40px;
-    padding: 6px 12px;
+  .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+  .note {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
   }
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 56px 0;
-  }
+  .note p { margin: 0; }
   footer {
-    margin-top: 64px;
-    padding-top: 24px;
+    margin-top: 64px; padding-top: 24px;
     border-top: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text-secondary);
+    font-size: 13px; color: var(--text-secondary);
   }
 </style>
 </head>
@@ -82,43 +51,48 @@
 <div class="wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: August 2026</p>
+  <p class="updated">Last updated: 21 August 2026</p>
 
-  <p>VoiceMailr ("the app") is developed to help you turn spoken notes into email messages. This policy explains what data the app processes, how it is used, and what choices you have.</p>
+  <p>VoiceMailr ("the app") helps you turn spoken notes into email messages. This policy explains what data the app processes, how it is used, and what choices you have.</p>
 
-  <h2>What we collect</h2>
+  <div class="note">
+    <p><strong>In short:</strong> your notes are sent through your own device's Mail app, using your own email account. VoiceMailr does not operate an email server and does not receive a copy of your messages.</p>
+  </div>
+
+  <h2>What the app processes</h2>
   <ul>
-    <li><strong>Voice recordings</strong> — captured only while you are actively recording, and used solely to generate a text transcript.</li>
-    <li><strong>Transcribed text</strong> — the content of your note, generated from your voice recording.</li>
-    <li><strong>Recipient email addresses</strong> — the destination(s) you configure in Settings.</li>
+    <li><strong>Voice input</strong> — captured only while you are actively recording, and used solely to produce a text transcript.</li>
+    <li><strong>Transcribed text</strong> — the content of your note, generated from your voice input.</li>
+    <li><strong>Recipient email addresses</strong> — the destinations you configure in Settings, stored on your device.</li>
     <li><strong>App preferences</strong> — your chosen language, note type, and default sending flow.</li>
+    <li><strong>Installation identifier</strong> — a randomly generated identifier created on first launch, used only for rate limiting the optional AI feature. It is not linked to your identity and is removed when you delete the app.</li>
   </ul>
-  <p>VoiceMailr does not collect location data, contacts, browsing history, or any data unrelated to its core function.</p>
+  <p>VoiceMailr does not collect location data, contacts, browsing history, or any data unrelated to its core function. It does not use data for advertising or tracking.</p>
 
-  <h2>How your data is processed</h2>
+  <h2>How your data is handled</h2>
 
   <h3>Transcription</h3>
-  <p>Voice-to-text conversion is performed using Apple's Speech framework. Depending on your device and settings, this may be processed on-device or through Apple's speech recognition service, governed by Apple's own privacy practices.</p>
+  <p>Voice-to-text conversion uses Apple's Speech framework. Depending on your device and system settings, this may be processed on-device or through Apple's speech recognition service, governed by Apple's own privacy practices.</p>
 
   <h3>Email delivery</h3>
-  <p>To send your note to your chosen recipient, the transcribed content is passed to our email delivery provider (Resend) for the sole purpose of transmission. This content is not used for advertising, profiling, or any purpose beyond delivering your note. We minimize log retention on our delivery provider's dashboard and do not routinely access the content of sent messages.</p>
+  <p>VoiceMailr prepares your note and hands it to the system Mail composer on your device. You review and confirm the message, and it is sent from your own email account through your own email provider. The app does not transmit your note to any email delivery service operated by the developer, and no copy of the message content is stored on any server controlled by the developer.</p>
 
-  <h3>AI subject generation (optional)</h3>
-  <p>If you enable this feature, a short subject line may be generated for your note using Cloudflare Workers AI. This is strictly opt-in and can be disabled at any time in Settings.</p>
+  <h3>AI subject line generation (optional, off by default)</h3>
+  <p>If you explicitly enable this feature, a portion of your transcript (approximately 1,000 tokens, roughly 3,500 characters) is sent to a Cloudflare Worker, which uses Cloudflare Workers AI to generate a short subject line. The excerpt is used only to produce that subject line and is not retained after the response is returned. This feature is disabled unless you turn it on, and it can be turned off again at any time in Settings.</p>
 
   <h2>Data storage and retention</h2>
-  <p>Recent notes and preferences are stored locally on your device. This data remains on your device until you delete it, delete the app, or a future version changes this behavior with clear notice. We do not maintain a server-side database of your notes.</p>
+  <p>Recent notes, recipient addresses, and preferences are stored locally on your device. They remain there until you delete them, delete the app, or a future version changes this behavior with clear notice. The developer does not maintain a server-side database of your notes.</p>
 
   <h2>Third parties</h2>
   <ul>
-    <li><strong>Apple</strong> — speech recognition (Speech framework)</li>
-    <li><strong>Resend</strong> — transactional email delivery</li>
-    <li><strong>Cloudflare Workers AI</strong> — optional subject line generation, only if enabled</li>
+    <li><strong>Apple</strong> — speech recognition (Speech framework) and the system Mail composer</li>
+    <li><strong>Your own email provider</strong> — delivers the message you send from the Mail app</li>
+    <li><strong>Cloudflare</strong> — hosts the optional subject-line Worker; used only if you enable the AI feature</li>
   </ul>
-  <p>We do not sell your data or share it with advertisers.</p>
+  <p>Your data is not sold or shared with advertisers.</p>
 
   <h2>Your rights</h2>
-  <p>You may access, edit, or delete your recipient addresses and preferences at any time from within the app. Deleting the app removes locally stored data from your device. For any other request regarding your data, contact us at <a href="mailto:burak@siskon.com.tr">burak@siskon.com.tr</a>.</p>
+  <p>You can view, edit, or delete your recipient addresses, notes, and preferences at any time from within the app. Deleting the app removes locally stored data from your device. For any other request regarding your data, contact us at <a href="mailto:burak@siskon.com.tr">burak@siskon.com.tr</a>.</p>
 
   <h2>Children's privacy</h2>
   <p>VoiceMailr is not directed at children and is not intended for use by anyone under the age of 13.</p>
@@ -128,33 +102,50 @@
 
   <hr class="divider">
 
-  <h1 style="font-size: 26px;">Gizlilik Politikası (Türkçe)</h1>
-  <p class="updated">Son güncelleme: Ağustos 2026</p>
+  <h1 style="font-size: 26px;">Gizlilik Politikası</h1>
+  <p class="updated">Son güncelleme: 21 Ağustos 2026</p>
+
+  <div class="note">
+    <p><strong>Özetle:</strong> notlarınız, cihazınızdaki kendi Mail uygulamanız üzerinden, kendi e-posta hesabınızla gönderilir. VoiceMailr bir e-posta sunucusu işletmez ve mesajlarınızın bir kopyasını almaz.</p>
+  </div>
 
   <h2>KVKK Kapsamında Bilgilendirme</h2>
   <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, VoiceMailr uygulaması aracılığıyla işlenen kişisel veriler yalnızca aşağıdaki amaçlarla işlenir:</p>
   <ul>
     <li>Kullanıcının sesli notunu metne dönüştürmek,</li>
-    <li>E-posta içeriğini hazırlamak ve belirlenen alıcıya iletmek,</li>
-    <li>Kullanıcının uygulama içi tercihlerini (dil, not türü, alıcı adresleri) saklamak.</li>
+    <li>E-posta içeriğini hazırlamak ve sistem Mail ekranı üzerinden kullanıcının onayına sunmak,</li>
+    <li>Kullanıcının uygulama içi tercihlerini (dil, not türü, alıcı adresleri) cihazda saklamak,</li>
+    <li>İsteğe bağlı yapay zekâ özelliği açıksa, konu satırı üretimi için kullanım sıklığını sınırlamak.</li>
+  </ul>
+
+  <h3>İşlenen veriler</h3>
+  <ul>
+    <li><strong>Ses girdisi</strong> — yalnızca kayıt sırasında alınır, metne dönüştürme amacıyla kullanılır.</li>
+    <li><strong>Transkript metni</strong> — notunuzun içeriği.</li>
+    <li><strong>Alıcı e-posta adresleri</strong> — Ayarlar'da tanımladığınız adresler, cihazınızda saklanır.</li>
+    <li><strong>Uygulama tercihleri</strong> — dil, not türü ve varsayılan gönderim akışı.</li>
+    <li><strong>Kurulum kimliği</strong> — ilk açılışta rastgele oluşturulan bir tanımlayıcıdır; yalnızca isteğe bağlı yapay zekâ özelliğinde kullanım sınırı uygulamak için kullanılır, kimliğinizle ilişkilendirilmez ve uygulama silindiğinde ortadan kalkar.</li>
   </ul>
 
   <h3>Veri işleme yöntemi</h3>
-  <p>Veri işleme elektronik ortamda gerçekleştirilir. Ses kaydı, metne dönüştürme amacıyla Apple'ın Speech altyapısı üzerinden işlenir. E-posta gönderimi için gerekli içerik, iletim amacıyla Resend e-posta altyapısına aktarılır. Bu içerik yalnızca e-postanın iletilmesi amacıyla kullanılır ve bu amaç dışında başka üçüncü taraflarla paylaşılmaz.</p>
+  <p>Veri işleme elektronik ortamda gerçekleştirilir. Ses kaydı, metne dönüştürme amacıyla Apple'ın Speech altyapısı üzerinden işlenir. Hazırlanan e-posta, cihazınızdaki sistem Mail ekranına aktarılır; gönderim, sizin onayınızla kendi e-posta hesabınız ve kendi e-posta sağlayıcınız üzerinden gerçekleşir. Not içeriği, geliştirici tarafından işletilen herhangi bir e-posta altyapısına aktarılmaz ve geliştiricinin kontrolündeki hiçbir sunucuda saklanmaz.</p>
+
+  <h3>İsteğe bağlı yapay zekâ özelliği</h3>
+  <p>Bu özelliği açıkça etkinleştirmeniz hâlinde, transkriptinizin bir bölümü (yaklaşık 1.000 token, kabaca 3.500 karakter) konu satırı üretimi için bir Cloudflare Worker'a iletilir. Bu bölüm yalnızca konu satırı üretmek için kullanılır ve yanıt döndükten sonra saklanmaz. Özellik varsayılan olarak kapalıdır ve Ayarlar'dan istediğiniz zaman kapatılabilir.</p>
 
   <h3>Saklama süresi</h3>
-  <p>Son notlar ve tercihler, kullanıcı silene, uygulamayı kaldırana veya yeni bir sürümde farklı bir veri saklama davranışı açıkça bildirilene kadar cihazda tutulur. Sunucu tarafında kalıcı bir not veritabanı bulunmamaktadır.</p>
+  <p>Son notlar, alıcı adresleri ve tercihler; kullanıcı silene, uygulamayı kaldırana veya yeni bir sürümde farklı bir veri saklama davranışı açıkça bildirilene kadar cihazda tutulur. Sunucu tarafında kalıcı bir not veritabanı bulunmamaktadır.</p>
 
   <h3>Kullanıcı hakları</h3>
-  <p>KVKK'nın 11. maddesi uyarınca kullanıcı; işlenen kişisel verileriniz hakkında bilgi talep etme, verilerin düzeltilmesini veya silinmesini isteme haklarına sahiptir. Bu haklarınızı kullanmak için <a href="mailto:burak@siskon.com.tr">burak@siskon.com.tr</a> adresinden bize ulaşabilirsiniz.</p>
+  <p>KVKK'nın 11. maddesi uyarınca; işlenen kişisel verileriniz hakkında bilgi talep etme, verilerinizin düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Bu haklarınızı kullanmak için <a href="mailto:burak@siskon.com.tr">burak@siskon.com.tr</a> adresinden bize ulaşabilirsiniz.</p>
 
   <h3>App Store Gizlilik Beyanı</h3>
-  <p>App Store Connect'te verilen gizlilik yanıtları, e-posta adreslerinin ve kullanıcı tarafından oluşturulan içeriklerin yalnızca e-posta gönderimi amacıyla işlendiğini belirtmektedir. Bu uygulama reklam veya takip amaçlı veri işlemez.</p>
+  <p>App Store Connect'te verilen gizlilik yanıtları, e-posta adreslerinin, kullanıcı tarafından oluşturulan içeriklerin ve kurulum kimliğinin yalnızca uygulamanın temel işlevleri ve isteğe bağlı yapay zekâ özelliği için işlendiğini belirtmektedir. Bu uygulama reklam veya takip amaçlı veri işlemez.</p>
 
   <p style="font-size: 13px; margin-top: 32px;">Bu metin bilgilendirme amaçlıdır; nihai hukuki metin için profesyonel hukuki danışmanlık önerilir.</p>
 
   <footer>
-    <p>VoiceMailr · <a href="index.html">Support</a></p>
+    <p>VoiceMailr · <a href="index.html">Support / Destek</a></p>
   </footer>
 </div>
 </body>
